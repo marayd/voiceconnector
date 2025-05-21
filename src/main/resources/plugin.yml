@@ -1,0 +1,11 @@
+name: VoiceConnector
+version: '1.0-SNAPSHOT'
+main: org.mryd.VoiceConnector
+description: "Connects Plasmo and Simple voice chats!"
+api-version: '1.21'
+author: mryd
+website: "https://mryd.org"
+
+depend:
+  - voicechat
+  - PlasmoVoice
