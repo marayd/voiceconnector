@@ -4,6 +4,7 @@ import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.*;
 import de.maxhenkel.voicechat.api.opus.OpusDecoder;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 import org.mryd.VoiceConnector;
 import su.plo.voice.api.audio.codec.AudioEncoder;
@@ -22,7 +23,7 @@ import static org.mryd.VoiceConnector.instance;
 
 public class SimpleAddon implements VoicechatPlugin {
 
-    private final Map<UUID, PlayerAudioContext> playerContexts = new ConcurrentHashMap<>();
+    public static final Map<UUID, PlayerAudioContext> playerContexts = new ConcurrentHashMap<>();
     private final PlasmoVoiceServer plasmoVoice = instance.getPlasmo().getVoiceServer();
 
     @Getter
@@ -91,7 +92,7 @@ public class SimpleAddon implements VoicechatPlugin {
         return new PlayerAudioContext(decoder, sender, sampleQueue);
     }
 
-    private static class PlayerAudioContext {
+    public static class PlayerAudioContext {
         final OpusDecoder decoder;
         final AudioSender sender;
         final BlockingQueue<short[]> sampleQueue;
@@ -107,7 +108,7 @@ public class SimpleAddon implements VoicechatPlugin {
         }
     }
 
-    private static class EncryptedFrameProvider implements AudioFrameProvider {
+    public static class EncryptedFrameProvider implements AudioFrameProvider {
 
         private final BlockingQueue<short[]> queue;
         private final ByteBuffer buffer = ByteBuffer.allocate(960 * 2); // 20ms mono @ 48kHz

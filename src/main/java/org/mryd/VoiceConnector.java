@@ -21,6 +21,9 @@ import su.plo.voice.api.server.player.VoiceServerPlayer;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.logging.Logger;
+
+import static org.mryd.simple.SimpleAddon.playerContexts;
 
 public class VoiceConnector extends JavaPlugin implements Listener {
 
@@ -101,10 +104,13 @@ public class VoiceConnector extends JavaPlugin implements Listener {
     }
 
 
+
+
     @EventHandler
     public void onPlayerLeft(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         plasmoSources.remove(player.getUniqueId());
+        playerContexts.remove(player.getUniqueId());
     }
 
     private boolean isPluginNotAvailable(String pluginName) {
